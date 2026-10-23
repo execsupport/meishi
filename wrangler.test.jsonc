@@ -1,0 +1,24 @@
+// Local test config: same as wrangler.jsonc minus the remote AI binding, so the scan and
+// memo-parse endpoints exercise their rule-based fallback and tests need no Cloudflare login.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "meishi",
+  "main": "src/worker/index.ts",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*", "/auth/*", "/memo"]
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "meishi",
+      "database_id": "9407079c-a1ea-401f-8bed-de4cd17c15e6",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "kv_namespaces": [{ "binding": "IMAGES", "id": "3b92d5f58fed4f0f9ba7f2b10f167980" }],
+  "observability": { "enabled": true }
+}
