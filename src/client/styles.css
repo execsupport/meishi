@@ -549,6 +549,20 @@ label:focus-within:has(input[type='file']:focus-visible),
     display: inline;
   }
 }
+/* Narrow phones (iPhone SE/mini, 375px): keep all four labels whole. */
+@media (max-width: 400px) {
+  .tab {
+    gap: 4px;
+    padding: 0 3px;
+    font-size: 13px;
+  }
+  .count {
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    font-size: 11px;
+  }
+}
 .count {
   display: inline-grid;
   place-items: center;
